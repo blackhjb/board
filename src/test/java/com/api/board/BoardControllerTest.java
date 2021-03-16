@@ -1,5 +1,5 @@
-package com.example.demo;
-import static org.assertj.core.api.Assertions.assertThat;
+package com.api.board;
+
 import com.api.board.board.domain.Board;
 import com.api.board.board.packet.BoardSaveRequestDto;
 import com.api.board.board.packet.BoardUpdateRequestDto;
@@ -15,10 +15,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class BoardControllerTest {
-
     @LocalServerPort
     private int port;
 
