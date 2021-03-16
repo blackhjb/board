@@ -14,7 +14,7 @@
 
 ## 프로그램 실행 방법
 1.porm.xml => maven => Reload project
-2.run
+2.Applocation run
 
 # 스웨거
 - **http://localhost:8080/swagger-ui.html**
