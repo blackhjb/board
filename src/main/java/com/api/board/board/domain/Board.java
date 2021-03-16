@@ -6,12 +6,11 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Getter
 @NoArgsConstructor
 @Entity@DynamicInsert
-//@DynamicUpdate
-//
 @Table(name = "tbl_board")
 public class Board extends BaseTimeEntity {
     @Id
@@ -42,6 +41,6 @@ public class Board extends BaseTimeEntity {
         this.boardSubject = boardSubject;
         this.boardContent = boardContent;
         this.boardWriter = boardWriter;
-
     }
+
 }
