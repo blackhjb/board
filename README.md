@@ -13,11 +13,19 @@
 - **패이징 처리 => 6개 이상일경우 패이징 처리**
 
 ## 프로그램 실행 방법
+# 인텔리 제이 사용시
 1.porm.xml => maven => Reload project
 2.Applocation run
 
+# 리눅스 환경
+1. 리눅스에 메이븐 설치
+2. 깃 클론 => 폴더이동
+3. mvn package
+4. java -jar *.jar
+
 # 스웨거
 - **http://localhost:8080/swagger-ui.html**
+
 # 화면
 
 ![스크린샷 2021-03-16 오후 3 11 35](https://user-images.githubusercontent.com/60101005/111263699-a271ff00-8669-11eb-8dee-c7d32aa912e1.png)
