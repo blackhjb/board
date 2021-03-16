@@ -10,8 +10,8 @@ import com.api.board.board.packet.BoardUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,9 +21,13 @@ import java.util.Map;
 public class BoardService {
     private final BoardRepository boardRepository;
 
+
     public int findAllCount() {
         return (int) boardRepository.count();
     }
+
+    /** 게시글 - 리스트 */
+    @Transactional(readOnly = true)
     public ResponseEntity<Map> getPagingBoard(Integer pNum) {
         Map result = null;
 
@@ -35,7 +39,6 @@ public class BoardService {
         if (list == null || list.size() == 0) {
             return null;
         }
-
         result = new HashMap<>();
         result.put("pagingData", pu);
         result.put("list", list);
@@ -44,25 +47,22 @@ public class BoardService {
     }
 
     /** 게시글 - 등록 */
-    @Transactional
     public Long save(BoardSaveRequestDto boardSaveRequestDto) {
         return boardRepository.save(boardSaveRequestDto.toEntity())
                 .getBoardSeq();
     }
 
     /** 게시글 - 상세 조회 */
-    @Transactional
+    @Transactional(readOnly = true)
     public ResBoardInfo findById(Long boardSeq) {
 
         Board board = boardRepository.findById(boardSeq)
                 .orElseThrow(() -> new IllegalAccessError("[boardSeq=" + boardSeq + "] 해당 게시글이 존재하지 않습니다."));
-
         return new ResBoardInfo(board);
     }
 
 
     /** 게시글 - 수정 */
-    @Transactional
     public Long update(Long boardSeq, BoardUpdateRequestDto boardUpdateRequestDto) {
 
         Board board = boardRepository.findById(boardSeq)
@@ -74,7 +74,6 @@ public class BoardService {
     }
 
     /** 게시글 - 삭제 */
-    @Transactional
     public void delete(Long boardSeq) {
         Board board = boardRepository.findById(boardSeq)
                 .orElseThrow(() -> new IllegalAccessError("[boardSeq=" + boardSeq + "] 해당 게시글이 존재하지 않습니다."));
